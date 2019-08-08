@@ -1,0 +1,810 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IceBreaker</name>
+    </assembly>
+    <members>
+        <member name="T:Icebreaker.WebApiConfig">
+            <summary>
+            Web API configuration
+            </summary>
+        </member>
+        <member name="M:Icebreaker.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Configures API settings
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/> to configure</param>
+        </member>
+        <member name="T:Icebreaker.MessagesController">
+            <summary>
+            Controller for the bot messaging endpoint
+            </summary>
+        </member>
+        <member name="M:Icebreaker.MessagesController.#ctor(Icebreaker.IcebreakerBot,Microsoft.ApplicationInsights.TelemetryClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Icebreaker.MessagesController"/> class.
+            </summary>
+            <param name="bot">The Icebreaker bot instance</param>
+            <param name="telemetryClient">The telemetry client instance</param>
+        </member>
+        <member name="M:Icebreaker.MessagesController.Post(Microsoft.Bot.Connector.Activity)">
+            <summary>
+            POST: api/messages
+            Receive a message from a user and reply to it
+            </summary>
+            <param name="activity">The incoming activity</param>
+            <returns>Task that resolves to the HTTP response message</returns>
+        </member>
+        <member name="M:Icebreaker.MessagesController.LogActivityTelemetry(Microsoft.Bot.Connector.Activity)">
+            <summary>
+            Log telemetry about the incoming activity.
+            </summary>
+            <param name="activity">The activity</param>
+        </member>
+        <member name="T:Icebreaker.Controllers.ProcessNowController">
+            <summary>
+            API controller to process matches.
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Controllers.ProcessNowController.#ctor(Icebreaker.IcebreakerBot,Microsoft.ApplicationInsights.TelemetryClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Icebreaker.Controllers.ProcessNowController"/> class.
+            </summary>
+            <param name="bot">The Icebreaker bot instance</param>
+            <param name="telemetryClient">The telemetry client to use</param>
+        </member>
+        <member name="M:Icebreaker.Controllers.ProcessNowController.Get(System.String)">
+            <summary>
+            Action to process matches
+            </summary>
+            <param name="key">API key</param>
+            <returns>Success (1) or failure (-1) code</returns>
+        </member>
+        <member name="M:Icebreaker.Controllers.ProcessNowController.GetFeedback(System.String)">
+            Calling Feedback card code changes 
+            <summary>
+            Action to process matches
+            </summary>
+            <param name="key">API key</param>
+            <returns>Success (1) or failure (-1) code</returns>
+        </member>
+        <member name="T:Icebreaker.Controllers.UploadController">
+            <summary>
+            Controller for image upload
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Controllers.UploadController.Upload(System.String)">
+            <summary>
+            Upload Image Method
+            </summary>
+            <param name="UserDetails">Gets User Details</param>
+            <returns> View</returns>
+        </member>
+        <member name="M:Icebreaker.Controllers.UploadController.Upload(System.Web.HttpPostedFileBase)">
+            <summary>
+            Upload image using file uploader
+            </summary>
+            <param name="photo">Gets Uploaded Image</param>
+            <returns>Return view </returns>
+        </member>
+        <member name="M:Icebreaker.Controllers.UploadController.LatestImage">
+            <summary>
+            Latest Image
+            </summary>
+            <returns>File uploaded</returns>
+        </member>
+        <member name="T:Icebreaker.Helpers.AdaptiveCards.FeedbackAdaptiveCard">
+            <summary>
+            Builder class for the pairup notification card
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Helpers.AdaptiveCards.FeedbackAdaptiveCard.GetCard(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates the pairup notification card.
+            </summary>
+            <param name="firstPersonName">Name of the matched person</param>
+            <param name="firstPersonFirstName">First name of the first person</param>
+            <param name="personUpn1">UPN of the Firstperson</param>
+            <param name="personUpn2">UPN of the Secondperson</param>
+            <param name="feedbackId">Feedback card id</param>
+            <returns>Pairup notification card</returns>
+        </member>
+        <member name="T:Icebreaker.Helpers.AdaptiveCards.PairUpNotificationAdaptiveCard">
+            <summary>
+            Builder class for the pairup notification card
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Helpers.AdaptiveCards.PairUpNotificationAdaptiveCard.GetCard(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="teamName"></param>
+            <param name="firstPersonName"></param>
+            <param name="secondPersonName"></param>
+            <param name="firstPersonFirstName"></param>
+            <param name="secondPersonFirstName"></param>
+            <param name="receiverName"></param>
+            <param name="personUpn"></param>
+            <param name="botDisplayName"></param>
+            <param name="dataprovider"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Icebreaker.Helpers.AdaptiveCards.UnrecognizedInputAdaptiveCard">
+            <summary>
+            Builder class for the unrecognized input message
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Helpers.AdaptiveCards.UnrecognizedInputAdaptiveCard.GetCard">
+            <summary>
+            Generates the adaptive card string for the unrecognized input.
+            </summary>
+            <returns>The adaptive card for the unrecognized input</returns>
+        </member>
+        <member name="T:Icebreaker.Helpers.AdaptiveCards.WelcomeNewMemberAdaptiveCard">
+            <summary>
+            Builder class for the welcome new member card
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Helpers.AdaptiveCards.WelcomeNewMemberAdaptiveCard.GetCard(System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates the welcome new member card.
+            </summary>
+            <param name="teamName">The team name</param>
+            <param name="personFirstName">The first name of the new member</param>
+            <param name="botDisplayName">The bot name</param>
+            <param name="botInstaller">The person that installed the bot to the team</param>
+            <returns>The welcome new member card</returns>
+        </member>
+        <member name="T:Icebreaker.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard">
+            <summary>
+            Builder class for the team welcome message
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard.GetCard(System.String,System.String,System.String)">
+            <summary>
+            Creates the adaptive card for the team welcome message
+            </summary>
+            <param name="teamName">The team name</param>
+            <param name="botDisplayName">The bot display name</param>
+            <param name="botInstaller">The name of the person that installed the bot</param>
+            <returns>The welcome team adaptive card</returns>
+        </member>
+        <member name="T:Icebreaker.Helpers.FeedbackInfo">
+            <summary>
+            Represents a feedback
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.FeedbackId">
+            <summary>
+            Gets or sets the user's id in Teams (29:xxx).
+            This is also the <see cref="P:Microsoft.Azure.Documents.Resource.Id"/>.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.MeetingRate">
+            <summary>
+            Gets or sets the meeting rate
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.Sports">
+            <summary>
+            Gets or sets the sports
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.Technology">
+            <summary>
+            Gets or sets the technology
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.Politics">
+            <summary>
+            Gets or sets the politics
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.ReadingBooks">
+            <summary>
+            Gets or sets the reading books
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.Travelling">
+            <summary>
+            Gets or sets the travelling
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.Entertainment">
+            <summary>
+            Gets or sets the entertainment
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.PersonGivenFrom">
+            <summary>
+            Gets or sets the person given from
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.FeedbackInfo.PersonGivenTo">
+            <summary>
+            Gets or sets the person given to
+            </summary>
+        </member>
+        <member name="T:Icebreaker.Helpers.IcebreakerBotDataProvider">
+            <summary>
+            Data provider routines
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.#ctor(Microsoft.ApplicationInsights.TelemetryClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Icebreaker.Helpers.IcebreakerBotDataProvider"/> class.
+            </summary>
+            <param name="telemetryClient">The telemetry client to use</param>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.UpdateTeamInstallStatusAsync(Icebreaker.Helpers.TeamInstallInfo,System.Boolean)">
+            <summary>
+            Updates team installation status in store. If the bot is installed, the info is saved, otherwise info for the team is deleted.
+            </summary>
+            <param name="team">The team installation info</param>
+            <param name="installed">Value that indicates if bot is installed</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.UpdatePairupUsersAsync(Icebreaker.Helpers.PairupUsers,System.Boolean)">
+            <summary>
+            PairupUsers
+            </summary>
+            <param name="pairupUsers">collection</param>
+            <param name="installed">collections</param>
+            <returns>insert data to db</returns>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.UpdateFeedbackInfoAsync(Icebreaker.Helpers.FeedbackInfo,System.Boolean)">
+            <summary>
+            Updates feedback info in store. If the bot is installed, the info is saved, otherwise info for the team is deleted.
+            </summary>
+            <param name="feedback">The feedback info</param>
+            <param name="installed">Value that indicates if bot is installed</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.GetInstalledTeamsAsync">
+            <summary>
+            Get the list of teams to which the app was installed.
+            </summary>
+            <returns>List of installed teams</returns>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.GetInstalledTeamAsync(System.String)">
+            <summary>
+            Returns the team that the bot has been installed to
+            </summary>
+            <param name="teamId">The team id</param>
+            <returns>Team that the bot is installed to</returns>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.GetPairUpUsersAsync">
+            <summary>
+            Returns the pairup users data
+            </summary>
+            <returns>List of pairup users</returns>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.GetUserInfoAsync(System.String)">
+            <summary>
+            Get the stored information about the given user
+            </summary>
+            <param name="userId">User id</param>
+            <returns>User information</returns>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.SetUserInfoAsync(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Set the user info for the given user
+            </summary>
+            <param name="tenantId">Tenant id</param>
+            <param name="userId">User id</param>
+            <param name="optedIn">User opt-in status</param>
+            <param name="serviceUrl">User service URL</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.Helpers.IcebreakerBotDataProvider.InitializeAsync">
+            <summary>
+            Initializes the database connection.
+            </summary>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="T:Icebreaker.Helpers.ImageInfo">
+            <summary>
+            Represents Uploaded image
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.ImageInfo.ImageId">
+            <summary>
+            Gets or sets the user's id in Teams (29:xxx).
+            This is also the <see cref="P:Microsoft.Azure.Documents.Resource.Id"/>.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.ImageInfo.Imageurl">
+            <summary>
+            Gets or sets the ImageUrl
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.ImageInfo.PersonGivenFrom">
+            <summary>
+            Gets or sets the person given from
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.ImageInfo.PersonGivenTo">
+            <summary>
+            Gets or sets the person given to
+            </summary>
+        </member>
+        <member name="T:Icebreaker.Helpers.PairupUsers">
+            <summary>
+            Pairuo users
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.PairupUsers.PairupId">
+            <summary>
+            parentid
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.PairupUsers.ScheduledDate">
+            <summary>
+            Gets or sets the tenant id
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.PairupUsers.escapedTitle">
+            <summary>
+            Gets or sets the service URL
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.PairupUsers.FirstPersonFirstName">
+            <summary>
+            Gets or sets the name of the person that installed the bot to the team
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.PairupUsers.PersonUpn">
+            <summary>
+            Gets sets value
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.PairupUsers.Ispaired">
+            <summary>
+            Gets or sets a value indicating whether gets sets value
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.PairupUsers.TeamId">
+            <summary>
+            Gets or sets a value indicating whether team id
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.PairupUsers.ServiceURL">
+            <summary>
+            Gets or sets a value indicating whether ServiceURL
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Helpers.PairupUsers.ToString">
+            <summary>
+            override
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="T:Icebreaker.Helpers.TeamInstallInfo">
+            <summary>
+            Represents information about a team to which the Icebreaker app was installed
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.TeamInstallInfo.TeamId">
+            <summary>
+            Gets or sets the team id.
+            This is also the <see cref="P:Microsoft.Azure.Documents.Resource.Id"/>.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.TeamInstallInfo.TenantId">
+            <summary>
+            Gets or sets the tenant id
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.TeamInstallInfo.ServiceUrl">
+            <summary>
+            Gets or sets the service URL
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.TeamInstallInfo.InstallerName">
+            <summary>
+            Gets or sets the name of the person that installed the bot to the team
+            </summary>
+        </member>
+        <member name="M:Icebreaker.Helpers.TeamInstallInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Icebreaker.Helpers.UserInfo">
+            <summary>
+            Represents a user
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.UserInfo.UserId">
+            <summary>
+            Gets or sets the user's id in Teams (29:xxx).
+            This is also the <see cref="P:Microsoft.Azure.Documents.Resource.Id"/>.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.UserInfo.TenantId">
+            <summary>
+            Gets or sets the tenant id
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.UserInfo.ServiceUrl">
+            <summary>
+            Gets or sets the service URL
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.UserInfo.OptedIn">
+            <summary>
+            Gets or sets a value indicating whether the user is opted in to pairups
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Helpers.UserInfo.RecentPairUps">
+            <summary>
+            Gets or sets a list of recent pairups
+            </summary>
+        </member>
+        <member name="T:Icebreaker.IcebreakerBot">
+            <summary>
+            Implements the core logic for Icebreaker bot
+            </summary>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.#ctor(Icebreaker.Helpers.IcebreakerBotDataProvider,Microsoft.ApplicationInsights.TelemetryClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Icebreaker.IcebreakerBot"/> class.
+            </summary>
+            <param name="dataProvider">The data provider to use</param>
+            <param name="telemetryClient">The telemetry client to use</param>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.MakePairsAndNotify">
+            <summary>
+            Generate pairups and send pairup notifications.
+            </summary>
+            <returns>The number of pairups that were made</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.MakeFeedbackNotify">
+            <summary>
+            Generate pairups and send pairup notifications.
+            </summary>
+            <returns>The number of pairups that were made</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.GetInstalledTeam(System.String)">
+            <summary>
+            Method that will return the information of the installed team
+            </summary>
+            <param name="teamId">The team id</param>
+            <returns>The team that the bot has been installed to</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.WelcomeUser(Microsoft.Bot.Connector.ConnectorClient,System.String,System.String,System.String,System.String)">
+            <summary>
+            Send a welcome message to the user that was just added to a team.
+            </summary>
+            <param name="connectorClient">The connector client</param>
+            <param name="memberAddedId">The id of the added user</param>
+            <param name="tenantId">The tenant id</param>
+            <param name="teamId">The id of the team the user was added to</param>
+            <param name="botInstaller">The person that installed the bot</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.WelcomeTeam(Microsoft.Bot.Connector.ConnectorClient,System.String,System.String)">
+            <summary>
+            Sends a welcome message to the General channel of the team that this bot has been installed to
+            </summary>
+            <param name="connectorClient">The connector client</param>
+            <param name="teamId">The id of the team that the bot is installed to</param>
+            <param name="botInstaller">The installer of the application</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.SendUnrecognizedInputMessage(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Connector.Activity)">
+            <summary>
+            Sends a message whenever there is unrecognized input into the bot
+            </summary>
+            <param name="connectorClient">The connector client</param>
+            <param name="replyActivity">The activity for replying to a message</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.SaveAddedToTeam(System.String,System.String,System.String,System.String)">
+            <summary>
+            Save information about the team to which the bot was added.
+            </summary>
+            <param name="serviceUrl">The service url</param>
+            <param name="teamId">The team id</param>
+            <param name="tenantId">The tenant id</param>
+            <param name="botInstaller">Person that has added the bot to the team</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.SavePairUpusers(System.String,System.DateTime,System.String,System.String,System.String,System.Boolean,System.String,System.String)">
+            <summary>
+            Save information about the pair up users details
+            </summary>
+            <param name="escapedTitle">The escaped title</param>
+            <param name="scheduledDate">Pair up time</param>
+            <param name="personUpn">UPN name</param>
+            <param name="firstPersonFirstName">The first person fisrt name</param>
+            <param name="secondPersonFirstName">The second person first name</param>
+            <param name="isPaired">to identify whether card is generated or not</param>
+            <param name="teamId"></param>
+            <param name="serviceURL"></param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.SaveRemoveFromTeam(System.String,System.String,System.String)">
+            <summary>
+            Save information about the team from which the bot was removed.
+            </summary>
+            <param name="serviceUrl">The service url</param>
+            <param name="teamId">The team id</param>
+            <param name="tenantId">The tenant id</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.OptOutUser(System.String,System.String,System.String)">
+            <summary>
+            Opt out the user from further pairups
+            </summary>
+            <param name="tenantId">The tenant id</param>
+            <param name="userId">The user id</param>
+            <param name="serviceUrl">The service url</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.OptInUser(System.String,System.String,System.String)">
+            <summary>
+            Opt in the user to pairups
+            </summary>
+            <param name="tenantId">The tenant id</param>
+            <param name="userId">The user id</param>
+            <param name="serviceUrl">The service url</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.SaveFeedbackInfo(Icebreaker.Helpers.FeedbackInfo)">
+            <summary>
+            Save information about the team to which the bot was added.
+            </summary>
+            <param name="feedbackInfo">The meeting rate</param>
+            <returns>Tracking task</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.GetTeamNameAsync(Microsoft.Bot.Connector.ConnectorClient,System.String)">
+            <summary>
+            Get the name of a team.
+            </summary>
+            <param name="connectorClient">The connector client</param>
+            <param name="teamId">The team id</param>
+            <returns>The name of the team</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.GetTeamAsync(Microsoft.Bot.Connector.ConnectorClient,System.String)">
+            <summary>
+            Get the team.
+            </summary>
+            <param name="connectorClient">The connector client</param>
+            <param name="teamId">The team id</param>
+            <returns>The name of the team</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.NotifyPair(Microsoft.Bot.Connector.ConnectorClient,System.String,System.String,System.Tuple{Microsoft.Bot.Connector.ChannelAccount,Microsoft.Bot.Connector.ChannelAccount},System.String)">
+            <summary>
+            Notify a pairup.
+            </summary>
+            <param name="connectorClient">The connector client</param>
+            <param name="tenantId">The tenant id</param>
+            <param name="teamName">The team name</param>
+            <param name="pair">The pairup</param>
+            <param name="teamId"> The team id</param>
+            <returns>Number of users notified successfully</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.FeedbackUser(Microsoft.Bot.Connector.ConnectorClient,System.String,System.String,System.Collections.Generic.List{Microsoft.Bot.Connector.ChannelAccount})">
+            <summary>
+            Notify a pairup.
+            </summary>
+            <param name="connectorClient">The connector client</param>
+            <param name="tenantId">The tenant id</param>
+            <param name="teamName">The team name</param>
+            <param name="pair">The pairup</param>
+            <returns>Number of users notified successfully</returns>
+        </member>
+        <member name="M:Icebreaker.IcebreakerBot.NotifyTeam(Microsoft.Bot.Connector.ConnectorClient,System.String,System.String)">
+            <summary>
+            Method that will send out the message in the General channel of the team
+            that this bot has been installed to
+            </summary>
+            <param name="connectorClient">The connector client</param>
+            <param name="cardToSend">The actual welcome card (for the team)</param>
+            <param name="teamId">The team id</param>
+            <returns>A tracking task</returns>
+        </member>
+        <member name="T:Icebreaker.IcebreakerModule">
+            <summary>
+            Autofac Module
+            </summary>
+        </member>
+        <member name="M:Icebreaker.IcebreakerModule.Load(Autofac.ContainerBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Icebreaker.ImageDataProvider">
+            <summary>
+            Image Data provider class
+            </summary>
+        </member>
+        <member name="M:Icebreaker.ImageDataProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Icebreaker.ImageDataProvider"/> class.
+            constructor of ImageDataProvider
+            </summary>
+        </member>
+        <member name="T:Icebreaker.ImageService">
+            <summary>
+            Builder class for Image Upload
+            </summary>
+        </member>
+        <member name="M:Icebreaker.ImageService.UploadImageAsync(System.Web.HttpPostedFileBase)">
+            <summary>
+            Uploads image to blob
+            </summary>
+            <param name="imageToUpload">Images will be Uploaded</param>
+            <returns> Return Image path</returns>
+        </member>
+        <member name="T:Icebreaker.ImageService.ConnectionString">
+            <summary>
+            Retrieve connection string.
+            </summary>
+        </member>
+        <member name="M:Icebreaker.ImageService.ConnectionString.GetConnectionString">
+            <summary>
+            GetConnectionString get connection string
+            </summary>
+            <returns>Return connection string of blob storage</returns>
+        </member>
+        <member name="T:Icebreaker.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.ChatWithMatchButtonText">
+            <summary>
+              Looks up a localized string similar to Chat with {0}.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.ErrorOccured">
+            <summary>
+              Looks up a localized string similar to There was an error while processing request. Retry?.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.FeedbackButtonText">
+            <summary>
+              Looks up a localized string similar to Feedback.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.FeedbackCardContentPart">
+            <summary>
+              Looks up a localized string similar to Give some feedback and share any pictures you may have taken during you meet up..
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.FeedbackCardMatchedText">
+            <summary>
+              Looks up a localized string similar to How was your meeting with {0}?.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.FeedbackTitleContent">
+            <summary>
+              Looks up a localized string similar to How was your meeting?.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.FeedbackUploadImageButtonText">
+            <summary>
+              Looks up a localized string similar to Upload an Image.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.FeedbackWelcomeText">
+            <summary>
+              Looks up a localized string similar to Have you met with {0}..
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.InstallMessageKnownInstallerPart1">
+            <summary>
+              Looks up a localized string similar to If you&apos;re reading this, it&apos;s most likely because {0} added me to the **{1} Team.**.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.InstallMessageKnownInstallerPart2">
+            <summary>
+              Looks up a localized string similar to I get to help you meet more people around your organization by randomly pairing you with someone new every week. You get to make more friends and learn about the people you work with. It&apos;s a win-win-*win* situation..
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.InstallMessageKnownInstallerPart3">
+            <summary>
+              Looks up a localized string similar to **To meet new people, just hang tight. I&apos;ll send you an invite soon.**.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.InstallMessageUnknownInstallerPart1">
+            <summary>
+              Looks up a localized string similar to If you&apos;re reading this, it&apos;s because I was installed to **{0} Team.** .
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.InstallMessageUnknownInstallerPart2">
+            <summary>
+              Looks up a localized string similar to I get to help you meet more people around your organization by randomly pairing you with someone new every week. You get to make more friends and learn about the people you work with. It&apos;s a win-win-*win* situation..
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.InstallMessageUnknownInstallerPart3">
+            <summary>
+              Looks up a localized string similar to **To meet new people, just hang tight. I&apos;ll send you an invite soon.**.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.MatchUpCardContentPart1">
+            <summary>
+              Looks up a localized string similar to Hi there again, I&apos;m {0} in {1}. A bot that pairs you with a new coworker to meet each week. This week your match is {2}..
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.MatchUpCardContentPart2">
+            <summary>
+              Looks up a localized string similar to If you&apos;ve got the inclination, set something up. See, meeting people *is* easy!.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.MatchUpCardMatchedText">
+            <summary>
+              Looks up a localized string similar to You&apos;ve been matched with {0}..
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.MatchUpCardTitleContent">
+            <summary>
+              Looks up a localized string similar to It&apos;s time for a match!.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.MeetupContent">
+            <summary>
+              Looks up a localized string similar to Hey there, looks like we&apos;ve been matched by {0} this week. It&apos;d be great to meet up for a coffee or a lunch or a call if you&apos;ve got time..
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.MeetupTitle">
+            <summary>
+              Looks up a localized string similar to {0} / {1} Meet up.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.OptInConfirmation">
+            <summary>
+              Looks up a localized string similar to Welcome back! You&apos;ve been missed. I&apos;ve restarted your matches. Have fun!.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.OptOutConfirmation">
+            <summary>
+              Looks up a localized string similar to All set. I&apos;ve paused your matches. You can turn them back on whenever you like..
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.PausePairingsButtonText">
+            <summary>
+              Looks up a localized string similar to Pause all matches.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.ProposeMeetupButtonText">
+            <summary>
+              Looks up a localized string similar to Propose meetup.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.ResumePairingsButtonText">
+            <summary>
+              Looks up a localized string similar to Resume matches.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.SalutationTitleText">
+            <summary>
+              Looks up a localized string similar to Hi there!.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.TakeATourButtonText">
+            <summary>
+              Looks up a localized string similar to Take a tour.
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.UnrecognizedInput">
+            <summary>
+              Looks up a localized string similar to I&apos;m sorry, but I can&apos;t process the incoming message. You can take a tour, though, to learn more about my functionality..
+            </summary>
+        </member>
+        <member name="P:Icebreaker.Properties.Resources.WelcomeTourTitle">
+            <summary>
+              Looks up a localized string similar to Tour.
+            </summary>
+        </member>
+    </members>
+</doc>

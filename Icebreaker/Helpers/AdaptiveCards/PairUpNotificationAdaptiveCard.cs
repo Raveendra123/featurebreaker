@@ -26,6 +26,19 @@ namespace Icebreaker.Helpers.AdaptiveCards
         }
 
         /// <summary>
+
+        /// 
+        /// </summary>
+        /// <param name="teamName"></param>
+        /// <param name="firstPersonName"></param>
+        /// <param name="secondPersonName"></param>
+        /// <param name="firstPersonFirstName"></param>
+        /// <param name="secondPersonFirstName"></param>
+        /// <param name="receiverName"></param>
+        /// <param name="personUpn"></param>
+        /// <param name="botDisplayName"></param>
+        /// <param name="dataprovider"></param>
+        /// <returns></returns>
         /// Creates the pairup notification card.
         /// </summary>
         /// <param name="teamName">Name of the team</param>
@@ -46,7 +59,6 @@ namespace Icebreaker.Helpers.AdaptiveCards
             var escapedContent = Uri.EscapeDataString(content);
 
             var meetingLink = "https://teams.microsoft.com/l/meeting/new?subject=" + escapedTitle + "&attendees=" + personUpn + "&content=" + escapedContent;
-
             var matchUpCardTitleContent = Resources.MatchUpCardTitleContent;
             var matchUpCardMatchedText = string.Format(Resources.MatchUpCardMatchedText, firstPersonName);
             var matchUpCardContentPart1 = string.Format(Resources.MatchUpCardContentPart1, botDisplayName, teamName, firstPersonName);
@@ -74,7 +86,14 @@ namespace Icebreaker.Helpers.AdaptiveCards
                 cardBody = cardBody.Replace($"%{kvp.Key}%", kvp.Value);
             }
 
+
+
+
             return cardBody;
+
+
+            return cardBody;
+
         }
     }
 }
