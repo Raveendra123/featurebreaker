@@ -55,7 +55,6 @@ namespace Icebreaker.Controllers
         {
             return await this.bot.MakePairsAndNotify();
         }
-
         /// Calling Feedback card code changes 
         /// <summary>
         /// Action to process matches
@@ -81,5 +80,6 @@ namespace Icebreaker.Controllers
         {
             return await this.bot.MakeFeedbackNotify();
         }
+
     }
 }

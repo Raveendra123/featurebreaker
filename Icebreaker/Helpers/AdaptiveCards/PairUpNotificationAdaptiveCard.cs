@@ -26,6 +26,7 @@ namespace Icebreaker.Helpers.AdaptiveCards
         }
 
         /// <summary>
+
         /// 
         /// </summary>
         /// <param name="teamName"></param>
@@ -38,6 +39,17 @@ namespace Icebreaker.Helpers.AdaptiveCards
         /// <param name="botDisplayName"></param>
         /// <param name="dataprovider"></param>
         /// <returns></returns>
+        /// Creates the pairup notification card.
+        /// </summary>
+        /// <param name="teamName">Name of the team</param>
+        /// <param name="firstPersonName">Name of the matched person</param>
+        /// <param name="secondPersonName">First name of the matched person</param>
+        /// <param name="firstPersonFirstName">First name of the first person</param>
+        /// <param name="secondPersonFirstName">First name of the second person</param>
+        /// <param name="receiverName">Name of the receiver</param>
+        /// <param name="personUpn">UPN of the person</param>
+        /// <param name="botDisplayName">This is the display name of the bot that is set from the deployment</param>
+        /// <returns>Pairup notification card</returns>
         public static string GetCard(string teamName, string firstPersonName, string secondPersonName, string firstPersonFirstName, string secondPersonFirstName, string receiverName, string personUpn, string botDisplayName)
         {
             var title = string.Format(Resources.MeetupTitle, firstPersonFirstName, secondPersonFirstName);
@@ -74,6 +86,10 @@ namespace Icebreaker.Helpers.AdaptiveCards
                 cardBody = cardBody.Replace($"%{kvp.Key}%", kvp.Value);
             }
 
+
+
+
+            return cardBody;
 
 
             return cardBody;

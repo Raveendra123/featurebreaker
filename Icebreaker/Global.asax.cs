@@ -9,6 +9,7 @@ namespace Icebreaker
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+
     using Autofac;
     using Autofac.Integration.WebApi;
     using Microsoft.Bot.Builder.Dialogs;
@@ -30,6 +31,7 @@ namespace Icebreaker
                    builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
                });
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

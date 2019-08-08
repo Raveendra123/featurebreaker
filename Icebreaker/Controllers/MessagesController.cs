@@ -13,12 +13,10 @@ namespace Icebreaker
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
+
     using Icebreaker.Helpers;
-    using Microsoft.ApplicationInsights;
-    using Microsoft.ApplicationInsights.DataContracts;
-    using Microsoft.Bot.Connector;
-    using Microsoft.Bot.Connector.Teams.Models;
-    using Properties;
+
+   
 
     /// <summary>
     /// Controller for the bot messaging endpoint
@@ -142,6 +140,7 @@ namespace Icebreaker
 
                     await connectorClient.Conversations.ReplyToActivityAsync(optInReply);
                 }
+
                 else if (string.Equals(activity.Text, "feed", StringComparison.InvariantCultureIgnoreCase))
                 {
                     this.telemetryClient.TrackTrace($"User {senderAadId} feed in");
@@ -163,6 +162,7 @@ namespace Icebreaker
                     feedbackInfo.PersonGivenTo = activity.Text.Split('_')[1].ToString();
                     await this.bot.SaveFeedbackInfo(feedbackInfo);
                 }
+
                 else
                 {
                     // Unknown input

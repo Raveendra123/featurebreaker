@@ -57,6 +57,12 @@
             "displayText": "%pauseMatchesText%",
             "text": "optout"
           }
+
+        "msteams": {
+          "type": "messageBack",
+          "displayText": "%pauseMatchesText%",
+          "text": "optout"
+        }
       }
     }
   ],

@@ -89,6 +89,9 @@ namespace Icebreaker
                         foreach (var pair in this.MakePairs(optedInUsers).Take(this.maxPairUpsPerTeam))
                         {
                             usersNotifiedCount += await this.NotifyPair(connectorClient, team.TenantId, teamName, pair, team.TeamId);
+
+                            usersNotifiedCount += await this.NotifyPair(connectorClient, team.TenantId, teamName, pair);
+
                             pairsNotifiedCount++;
                         }
                     }
@@ -306,8 +309,6 @@ namespace Icebreaker
             };
             return this.dataProvider.UpdateTeamInstallStatusAsync(teamInstallInfo, true);
         }
-
-        /// <summary>
         /// Save information about the pair up users details
         /// </summary>
         /// <param name="escapedTitle">The escaped title</param>
@@ -375,7 +376,6 @@ namespace Icebreaker
             return this.dataProvider.SetUserInfoAsync(tenantId, userId, true, serviceUrl);
         }
 
-        /// <summary>
         /// Save information about the team to which the bot was added.
         /// </summary>
         /// <param name="feedbackInfo">The meeting rate</param>
@@ -399,6 +399,7 @@ namespace Icebreaker
         }
 
         /// <summary>
+
         /// Get the team.
         /// </summary>
         /// <param name="connectorClient">The connector client</param>
@@ -421,6 +422,9 @@ namespace Icebreaker
         /// <param name="teamId"> The team id</param>
         /// <returns>Number of users notified successfully</returns>
         private async Task<int> NotifyPair(ConnectorClient connectorClient, string tenantId, string teamName, Tuple<ChannelAccount, ChannelAccount> pair, string teamId)
+
+        /// <returns>Number of users notified successfully</returns>
+        private async Task<int> NotifyPair(ConnectorClient connectorClient, string tenantId, string teamName, Tuple<ChannelAccount, ChannelAccount> pair)
         {
             this.telemetryClient.TrackTrace($"Sending pairup notification to {pair.Item1.Id} and {pair.Item2.Id}");
 
@@ -429,12 +433,14 @@ namespace Icebreaker
 
             // Fill in person2's info in the card for person1
             var cardForPerson1 = PairUpNotificationAdaptiveCard.GetCard(teamName, teamsPerson2.Name, teamsPerson1.Name, teamsPerson2.GivenName, teamsPerson1.GivenName, teamsPerson1.GivenName, teamsPerson2.UserPrincipalName, this.botDisplayName);
+
             DateTime scheduledDate = DateTime.Now;
             var serviceURL = connectorClient.BaseUri.AbsoluteUri;
             await this.SavePairUpusers(string.Format(Resources.MeetupTitle, teamsPerson2.Name, teamsPerson1.Name), scheduledDate, teamsPerson2.UserPrincipalName, teamsPerson2.Name, teamsPerson1.Name, true, teamId, serviceURL);
 
             // Fill in person1's info in the card for person2
             var cardForPerson2 = PairUpNotificationAdaptiveCard.GetCard(teamName, teamsPerson1.Name, teamsPerson2.Name, teamsPerson1.GivenName, teamsPerson2.GivenName, teamsPerson2.GivenName, teamsPerson1.UserPrincipalName, this.botDisplayName);
+
 
             await this.SavePairUpusers(string.Format(Resources.MeetupTitle, teamsPerson1.Name, teamsPerson2.Name), scheduledDate, teamsPerson1.UserPrincipalName, teamsPerson1.Name, teamsPerson2.Name, true, teamId, serviceURL);
 

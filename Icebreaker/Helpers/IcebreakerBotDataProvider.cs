@@ -166,6 +166,7 @@ namespace Icebreaker.Helpers
         }
 
         /// <summary>
+
         /// Returns the pairup users data
         /// </summary>
         /// <returns>List of pairup users</returns>
@@ -219,6 +220,7 @@ namespace Icebreaker.Helpers
         //}
 
         /// <summary>
+
         /// Get the stored information about the given user
         /// </summary>
         /// <param name="userId">User id</param>
@@ -278,6 +280,8 @@ namespace Icebreaker.Helpers
             var feedbackInfoCollectionName = CloudConfigurationManager.GetSetting("FeedbackInfoCollections");
             var imageInfoCollectionName = CloudConfigurationManager.GetSetting("ImageInfoCollections");
             this.documentClient = new DocumentClient(new Uri(endpointUrl), primaryKey);
+
+            this.documentClient = new DocumentClient(new Uri(endpointUrl), primaryKey);
             var requestOptions = new RequestOptions { OfferThroughput = DefaultRequestThroughput };
             bool useSharedOffer = true;
 
@@ -307,7 +311,6 @@ namespace Icebreaker.Helpers
                 Id = teamsCollectionName,
             };
             teamsCollectionDefinition.PartitionKey.Paths.Add("/id");
-
             this.teamsCollection = await this.documentClient.CreateDocumentCollectionIfNotExistsAsync(this.database.SelfLink, teamsCollectionDefinition, useSharedOffer ? null : requestOptions);
 
             // Get a reference to the Users collection, creating it if needed
@@ -340,6 +343,9 @@ namespace Icebreaker.Helpers
             };
             imageInfoCollectionDefinition.PartitionKey.Paths.Add("/id");
             this.imageCollections = await this.documentClient.CreateDocumentCollectionIfNotExistsAsync(this.database.SelfLink, imageInfoCollectionDefinition, useSharedOffer ? null : requestOptions);
+
+            this.usersCollection = await this.documentClient.CreateDocumentCollectionIfNotExistsAsync(this.database.SelfLink, usersCollectionDefinition, useSharedOffer ? null : requestOptions);
+
             this.telemetryClient.TrackTrace("Data store initialized");
         }
 
